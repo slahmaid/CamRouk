@@ -341,7 +341,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Form Validation and Submission
     const form = document.getElementById('main-form');
-    const successMessage = document.getElementById('form-success-message');
+    // Removed successMessage as we are now redirecting
+    // const successMessage = document.getElementById('form-success-message'); 
     const phoneInput = document.getElementById('phone');
     const submitButton = form.querySelector('.form-button');
 
@@ -392,12 +393,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (!currentData.ok) {
-                throw new Error(`Failed to fetch current data: ${currentData.statusText}`);
+                // If the bin is empty or new, the response might not have a 'record'
+                // But we still need a valid starting point.
+                // We'll proceed and check the response data below.
+                console.warn('Could not fetch existing data. Assuming bin is new or empty.');
             }
 
-            let jsonResponse = await currentData.json();
-            // JSONBin wraps data in a 'record' object
-            let orders = jsonResponse.record || []; 
+            let orders = [];
+            try {
+                let jsonResponse = await currentData.json();
+                // JSONBin wraps data in a 'record' object, handle case where it's an array directly
+                orders = jsonResponse.record || jsonResponse || []; 
+            } catch (error) {
+                console.warn('Error parsing JSON response. Assuming bin is empty:', error);
+                orders = [];
+            }
+
 
             // Ensure 'orders' is an array, if the bin was empty
             if (!Array.isArray(orders)) {
@@ -423,12 +434,10 @@ document.addEventListener('DOMContentLoaded', function() {
                  throw new Error(`Failed to update data: ${updateResponse.statusText}`);
             }
 
-            // Success: Show success message
-            form.style.opacity = '0';
+            // Success: Redirect to the thank you page
             setTimeout(() => {
-                form.style.display = 'none';
-                successMessage.style.display = 'block';
-            }, 300);
+                window.location.href = 'thankyou.html';
+            }, 500);
             
             console.log('Order submitted successfully:', newOrder);
 
