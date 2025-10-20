@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كاميرا المراقبة الذكية - حماية وأمان</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+                <div class="loader-line-wrap">
+                    <div class="loader-line"></div>
+                </div>
+            </div>
+        </div>
+        <div class="loader-text">Cam'Rouk</div>
+    </div>
+
+    <div id="particles-js"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="scroll-progress"></div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="img\logo.png" alt="Cam'Rouk Logo" class="logo-icon">
+                <span class="logo-text">Cam'Rouk</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#product" class="nav-link">المنتج</a></li>
+                <li><a href="#features" class="nav-link">المميزات</a></li>
+                <li><a href="#testimonials" class="nav-link">آراء العملاء</a></li>
+                <li><a href="#order-form" class="nav-link">اطلب الآن</a></li>
+                <li><a href="#faq" class="nav-link">الأسئلة</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="container">
+            <h1>احمِ مزرعتك، فيلتك وممتلكاتك براحة بال تامة</h1>
+            <p class="subtitle">راقب كل شيء مباشرة من هاتفك، بوضوح تام ليلاً ونهاراً. تركيب سهل بدون أسلاك معقدة.</p>
+            
+            <div class="hero-features">
+                <span>🚚 توصيل مجاني في كل مدن المغرب</span>
+                <span>💰 الدفع عند الاستلام</span>
+                <span>🔄 ضمان الجودة واسترجاع سهل</span>
+            </div>
+            <a href="#order-form" class="cta-button">أطلب الكاميرا الآن</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-showcase" id="product">
+            <div class="container">
+                <h2>كاميرا المراقبة الذكية Cam'Rouk</h2>
+                <p class="section-subtitle">اكتشف قوة الحماية الذكية</p>
+                
+                <div class="product-gallery">
+                    <div class="main-product-image">
+                        <img src="img\product-main.jpg" alt="كاميرا المراقبة الذكية">
+                        <div class="image-overlay">
+                            <div class="zoom-icon">🔍</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-thumbnails">
+                        <div class="thumbnail active">
+                            <img src="img\product-main.jpg" alt="منظر أمامي">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="img\product-front.jpg" alt="منظر جانبي">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="img\product-side.jpg" alt="منظر خلفي">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="img\product-back.jpg" alt="التثبيت">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-highlights">
+                    <div class="highlight-card">
+                        <div class="highlight-icon">📹</div>
+                        <h3>Full HD 1080P</h3>
+                        <p>جودة صورة عالية الوضوح</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🌙</div>
+                        <h3>رؤية ليلية</h3>
+                        <p>حتى 30 متر في الظلام</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">📱</div>
+                        <h3>تطبيق موبايل</h3>
+                        <p>راقب من أي مكان</p>
+                    </div>
+                    <div class="highlight-card">
+                        <div class="highlight-icon">🔋</div>
+                        <h3>بطارية طويلة</h3>
+                        <p>يعمل لمدة 6 أشهر</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="problem">
+            <div class="container">
+                <h2>هل أنت قلق بشأن...؟</h2>
+                <div class="problem-grid">
+                    <div class="problem-item">
+                        <div class="icon-placeholder">🔒</div>
+                        <h3>سرقة المحاصيل أو المعدات؟</h3>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon-placeholder">👤</div>
+                        <h3>الدخلاء والمتطفلين على ممتلكاتك؟</h3>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon-placeholder">📱</div>
+                        <h3>مراقبة العمال أو العائلة عن بعد؟</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2>لماذا كاميرا SecurEye هي الخيار الأفضل لك؟</h2>
+                <div class="feature-item">
+                    <div class="feature-icon">📹</div>
+                    <div>
+                        <h3>جودة صورة عالية الوضوح (Full HD)</h3>
+                        <p>شاهد كل التفاصيل بوضوح تام لتتعرف على الوجوه ولوحات السيارات بسهولة.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌙</div>
+                    <div>
+                        <h3>رؤية ليلية متطورة بالألوان</h3>
+                        <p>حماية على مدار 24 ساعة. صورتها واضحة حتى في الظلام الدامس.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💧</div>
+                    <div>
+                        <h3>مقاومة للماء والحرارة (IP66)</h3>
+                        <p>مصممة لتتحمل شمس المغرب وأمطاره، تعمل بكفاءة في كل الظروف.</p>
+                    </div>
+                </div>
+                 <div class="feature-item">
+                    <div class="feature-icon">🔔</div>
+                    <div>
+                        <h3>كاشف الحركة وتنبيهات على الهاتف</h3>
+                        <p>توصل بإشعار فوري على هاتفك عند مرور أي شخص أمام الكاميرا.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="5000">0</div>
+                        <div class="stat-label">عميل راضٍ</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="99">0</div>
+                        <div class="stat-label">% رضا العملاء</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="24">0</div>
+                        <div class="stat-label">ساعة دعم</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="10000">0</div>
+                        <div class="stat-label">كاميرا مباعة</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2>ماذا يقول عملاؤنا الراضون؟</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p>"أصبحت أراقب ماشيَتي ومعداتي من المنزل مباشرة. منتج رائع أنصح به كل فلاح."</p>
+                        <h4>- محمد، من نواحي مراكش</h4>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"الآن أشعر بأمان أكبر على عائلتي وممتلكاتي، خصوصاً عندما نكون خارج المنزل."</p>
+                        <h4>- فاطمة، الدار البيضاء</h4>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"كاميرا ممتازة، سهلة الاستخدام وتطبيقها بسيط. التوصيل كان سريعاً."</p>
+                        <h4>- يوسف، من أكادير</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="order-form" class="order-section">
+            <div class="container">
+                <h2>عرض خاص لفترة محدودة!</h2>
+                <div class="price">
+                    <span class="old-price">1299 درهم</span>
+                    <span class="new-price">فقط بـ 1149 درهم!</span>
+                </div>
+                <p class="offer-text">اطلب الآن واستفد من التوصيل المجاني والدفع عند الاستلام!</p>
+                
+                <form id="main-form">
+                    <h3>املأ هذه الاستمارة وسنتصل بك لتأكيد طلبك</h3>
+                    <div class="form-group">
+                        <label for="name">الاسم الكامل</label>
+                        <input type="text" id="name" name="name" placeholder="الاسم والنسب" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" placeholder="مثال: 0612345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">المدينة</label>
+                        <input type="text" id="city" name="city" placeholder="مدينتك" required>
+                    </div>
+                    <button type="submit" class="cta-button form-button">اضغط هنا لتأكيد الطلب</button>
+                </form>
+                <div id="form-success-message" style="display:none;">
+                    شكراً لك! تم استلام طلبك بنجاح. سنتصل بك قريباً للتأكيد.
+                </div>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <div class="container">
+                <h2>أسئلة شائعة</h2>
+                <div class="faq-item">
+                    <button class="faq-question">كيف يتم توصيل الطلب؟</button>
+                    <div class="faq-answer">
+                        <p>لدينا شركة توصيل توصل المنتج لباب منزلك في جميع مدن المغرب.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">كم مدة التوصيل؟</button>
+                    <div class="faq-answer">
+                        <p>التوصيل يستغرق عادة بين 24 و 72 ساعة حسب مدينتك.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">هل المنتج عليه ضمان؟</button>
+                    <div class="faq-answer">
+                        <p>نعم، نقدم ضمان لمدة 6 أشهر ضد أي عيوب في التصنيع.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>للمزيد من المعلومات، تواصل معنا عبر الواتساب: 0612345678</p>
+            <p>&copy; 2025 كاميرا المراقبة الذكية. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- Image Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
