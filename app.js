@@ -343,6 +343,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('main-form');
     const successMessage = document.getElementById('form-success-message');
     const phoneInput = document.getElementById('phone');
+    const submitButton = form.querySelector('.form-button');
+
+    // JSONBin Configuration
+    const JSONBIN_URL = 'https://api.jsonbin.io/v3/b/68f6130f43b1c97be9732e32';
+    const MASTER_KEY = '$2a$10$W7Y1w05rI7FhqCSUCB/tRuDJYO2fRlTwgv2s3je3OlExS3oOz9UzG';
 
     // Phone number validation
     phoneInput.addEventListener('input', function(e) {
@@ -353,60 +358,100 @@ document.addEventListener('DOMContentLoaded', function() {
         e.target.value = value;
     });
 
-    form.addEventListener('submit', function(e) {
+    // Function to handle form submission (sends data to JSONBin)
+    async function handleFormSubmission(e) {
         e.preventDefault();
+        submitButton.disabled = true;
+        submitButton.textContent = 'جاري الإرسال...';
+        submitButton.style.opacity = '0.7';
 
         // Get form data
-        const formData = {
-            name: document.getElementById('name').value,
-            phone: document.getElementById('phone').value,
-            city: document.getElementById('city').value
+        const newOrder = {
+            name: document.getElementById('name').value.trim(),
+            phone: document.getElementById('phone').value.trim(),
+            city: document.getElementById('city').value.trim(),
+            date: new Date().toISOString()
         };
 
         // Basic validation
-        if (formData.phone.length < 10) {
+        if (newOrder.phone.length < 10) {
             alert('يرجى إدخال رقم هاتف صحيح (10 أرقام على الأقل)');
+            submitButton.disabled = false;
+            submitButton.textContent = 'اضغط هنا لتأكيد الطلب';
+            submitButton.style.opacity = '1';
             return;
         }
 
-        // In a real project, you would send the data to a server or Google Sheet here.
-        // For example:
-        // fetch('your-server-endpoint', { 
-        //     method: 'POST', 
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(formData) 
-        // })
-        //   .then(response => response.json())
-        //   .then(data => { 
-        //       console.log(data);
-        //       form.style.display = 'none';
-        //       successMessage.style.display = 'block';
-        //   })
-        //   .catch(error => {
-        //       console.error('Error:', error);
-        //       alert('حدث خطأ. يرجى المحاولة مرة أخرى.');
-        //   });
-        
-        // Simulate form submission
-        form.style.opacity = '0';
-        setTimeout(() => {
-            form.style.display = 'none';
-            successMessage.style.display = 'block';
-        }, 300);
+        try {
+            // 1. Fetch current data from JSONBin
+            let currentData = await fetch(JSONBIN_URL, {
+                method: 'GET',
+                headers: {
+                    'X-Master-Key': MASTER_KEY
+                }
+            });
 
-        // Log form data (for debugging)
-        console.log('Form submitted:', formData);
-    });
+            if (!currentData.ok) {
+                throw new Error(`Failed to fetch current data: ${currentData.statusText}`);
+            }
 
-    // Add loading state to CTA button
+            let jsonResponse = await currentData.json();
+            // JSONBin wraps data in a 'record' object
+            let orders = jsonResponse.record || []; 
+
+            // Ensure 'orders' is an array, if the bin was empty
+            if (!Array.isArray(orders)) {
+                console.warn('JSONBin record is not an array, initializing a new one.');
+                orders = [];
+            }
+            
+            // 2. Add the new order to the array
+            orders.push(newOrder);
+
+            // 3. Update the data on JSONBin
+            let updateResponse = await fetch(JSONBIN_URL, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Master-Key': MASTER_KEY,
+                    'X-Bin-Versioning': 'false' // Optional: keep the bin from creating multiple versions
+                },
+                body: JSON.stringify(orders)
+            });
+
+            if (!updateResponse.ok) {
+                 throw new Error(`Failed to update data: ${updateResponse.statusText}`);
+            }
+
+            // Success: Show success message
+            form.style.opacity = '0';
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+            }, 300);
+            
+            console.log('Order submitted successfully:', newOrder);
+
+        } catch (error) {
+            console.error('Submission Error:', error);
+            alert('حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.');
+            submitButton.disabled = false;
+            submitButton.textContent = 'اضغط هنا لتأكيد الطلب';
+            submitButton.style.opacity = '1';
+        }
+    }
+
+    form.addEventListener('submit', handleFormSubmission);
+    // End of Form Validation and Submission
+
+    // Add loading state to CTA button (kept for general buttons, form button handled above)
     const ctaButtons = document.querySelectorAll('.cta-button');
     ctaButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            if (this.type === 'submit') {
-                this.style.opacity = '0.7';
-                this.style.cursor = 'wait';
-            }
-        });
+        if (button.type !== 'submit') {
+            button.addEventListener('click', function() {
+                // Not applying loading state for non-form CTAs
+            });
+        }
     });
 
     // Animated Counter for Stats
